@@ -1,0 +1,27 @@
+﻿@model CafeMenu.Models.CategoryModel
+
+@{
+    ViewData["Title"] = "Add New Category";
+    var categories = ViewBag.Categories as List<CategoryModel> ?? new List<CategoryModel>();
+    List<SelectListItem> categoriesList = (from p in categories
+                                           select new SelectListItem
+                                                   {
+                                                       Text = p.CategoryName,
+                                                       Value = p.CategoryId.ToString()
+                                                   }).ToList();
+    categoriesList.Insert(0, new SelectListItem { Text = "Select Parent Category", Value = "0", Selected = true });
+
+}
+
+<h2>@ViewData["Title"]</h2>
+
+
+<form asp-action="AddNew" method="post">
+    <label>Category Name:</label>
+    <input asp-for="CategoryName" />
+    <label>Parent Category:</label>
+    @Html.DropDownList("ParentCategoryId", categoriesList)
+
+
+    <button type="submit">Save</button>
+</form>
