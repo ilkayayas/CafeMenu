@@ -1,11 +1,12 @@
 ﻿using CafeMenu.Data.Configurations;
 using CafeMenu.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
 namespace CafeMenu.Data
 {
-    public class CafeMenuDbContext : DbContext
+    public class CafeMenuDbContext : IdentityDbContext
     {
         public CafeMenuDbContext(DbContextOptions<CafeMenuDbContext> dbContextOptions) : base(dbContextOptions) { }
 
